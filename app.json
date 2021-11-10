@@ -53,7 +53,7 @@ export class App extends Component {
     if(!loaded){
       return(
         <View style={{ flex: 1, justifyContent: 'center'}}>
-          <Text>Loading</Text>
+          <Text>로딩중..</Text>
         </View>
       )
     }
@@ -71,7 +71,7 @@ export class App extends Component {
 
     return(
       <View style={{ flex: 1, justifyContent: 'center'}}>
-          <Text>User is logged in</Text>
+          <Text> -로그인중- </Text>
         </View>
     )
   }
