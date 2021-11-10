@@ -21,6 +21,7 @@ export class Login extends Component {
         })
         .catch((error) => {
             console.log(error)
+            alert("로그인 에러")
         })
     }
     render() {
@@ -38,7 +39,7 @@ export class Login extends Component {
 
                 <Button
                     onPress={() => this.onSignUp()}
-                    title=""
+                    title="제출"
                 ></Button>
             </View>
         )
