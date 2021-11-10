@@ -68,10 +68,9 @@ export class App extends Component {
       </NavigationContainer>
     );
     }
-
     return(
       <View style={{ flex: 1, justifyContent: 'center'}}>
-          <Text>이미 로그인 되어있습니다.</Text>
+          <Text>로그인 되어있습니다.</Text>
         </View>
     )
   }
