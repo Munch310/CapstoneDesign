@@ -23,6 +23,7 @@ export class Register extends Component {
         })
         .catch((error) => {
             console.log(error)
+            alert("작성이 올바르지 않습니다.")
         })
     }
     render() {
@@ -44,7 +45,7 @@ export class Register extends Component {
 
                 <Button
                     onPress={() => this.onSignUp()}
-                    title="Sign"
+                    title="제출"
                 ></Button>
             </View>
         )
