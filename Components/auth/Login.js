@@ -38,7 +38,7 @@ export class Login extends Component {
 
                 <Button
                     onPress={() => this.onSignUp()}
-                    title="Sign In"
+                    title=""
                 ></Button>
             </View>
         )
