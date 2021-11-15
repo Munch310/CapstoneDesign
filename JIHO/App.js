@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import PhoneForm from './components/PhoneForm';
-import PhoneInfoList from './components/PhoneInfoList';
+import PostForm from './components/PostForm';
+import PostInfoList from './components/PostInfoList';
 
 class App extends Component {
   id = 2
@@ -55,7 +55,7 @@ class App extends Component {
     );
     return (
       <div>
-        <PhoneForm
+        <PostForm
           onCreate={this.handleCreate}
         />
         <p>
@@ -66,7 +66,7 @@ class App extends Component {
           />
         </p>
         <hr />
-        <PhoneInfoList
+        <PostInfoList
           data={filteredList}
           onRemove={this.handleRemove}
           onUpdate={this.handleUpdate}
