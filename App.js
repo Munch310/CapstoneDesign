@@ -4,6 +4,13 @@ import React, {Component} from "react";
 import {View, Text} from 'react-native'
 import * as firebase from 'firebase'
 
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware } from 'redux' 
+import rootReducer from './redux/reducers'
+import thunk from "redux-thunk";
+
+const store = createStore(rootReducer, applyMiddleware(thunk))
+
 const firebaseConfig = {
   apiKey: "AIzaSyDd3a1mhtAvqGHUtfPrPRU_QkipXyGCJkQ",
   authDomain: "test-dav-6733f.firebaseapp.com",
@@ -23,6 +30,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import LandingScreen from "./Components/auth/Landing";
 import RegisterScreen from "./Components/auth/Register";
+import MainScreen from './Components/Main'
 
 const Stack = createStackNavigator();
 
@@ -33,14 +41,14 @@ export class App extends Component {
       loaded: false,
     }
   }
-  componentDidMount(){
+  componentDidMount(){ // 로그인, 로드 정보  
   firebase.auth().onAuthStateChanged((user) => {
-    if(!user){
+    if(!user){ // user 값이 없으면 logedin 값 false
       this.setState({
         loggedIn: false,
         loaded: true,
       })
-    }else {
+    }else { // 아닌경우 로그인
       this.setState({
         loggedIn: true,
         loaded: true,
@@ -50,28 +58,31 @@ export class App extends Component {
   }
   render() {
     const {loaded, loggedIn} = this.state;
-    if(!loaded){
+    if(!loaded){ // 로드 되지 않았다면 로딩중 출력
       return(
         <View style={{ flex: 1, justifyContent: 'center'}}>
           <Text>로딩중</Text>
         </View>
       )
     }
-    if(!loggedIn){
+    if(!loggedIn){ // 로드는 되었지만 로그인 되지 않았을때 화면 출력 #지금은 회원가입 버튼이랑 로그인 버튼만 있음#
     return (
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Landing">
           <Stack.Screen name="Landing" component={LandingScreen} options={{headerShown: false}}/>
           <Stack.Screen name="Register" component={RegisterScreen}/>
-        
+
         </Stack.Navigator>
       </NavigationContainer>
     );
-    }
-    return(
-      <View style={{ flex: 1, justifyContent: 'center'}}>
-          <Text>로그인 되어있습니다.</Text>
-        </View>
+    }// 로드도 되고 로그인도 되서 들어가졌을때 화면
+    return( 
+      <Provider store={store}>
+        <MainScreen>
+          
+        </MainScreen>
+      </Provider>
+      
     )
   }
 }
