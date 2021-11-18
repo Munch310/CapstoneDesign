@@ -52,7 +52,7 @@ class App extends Component {
           : info // 기존의 값을 그대로 렌더링
       )
     })
-  }
+  }//아무의미없는거
   render() {
     const { information, keyword } = this.state;
     const filteredList = information.filter(
