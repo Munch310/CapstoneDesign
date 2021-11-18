@@ -12,18 +12,18 @@ export class Register extends Component {
         this.state = {
             email : '',
             password: '',
-            name: ''
+            name: '',
         }
         this.onSignUp = this.onSignUp.bind(this)
     }
-    onSignUp(){
-        const { email, password } = this.state;
+    onSignUp(){ // firebase 인증 관련
+        const { email, password, name } = this.state;
         firebase.auth().createUserWithEmailAndPassword(email, password)
         .then((result) => {
-            firebase.firestore().collection("users")
-                .doc(firebase.auth().currentUser.uid)
-                .set({
-                    name, 
+            firebase.firestore().collection("users") // users 에 
+                .doc(firebase.auth().currentUser.uid) // uid 값 가져와서
+                .set({ // 이름 이메일 
+                    name,
                     email
                 })
             console.log(result)
@@ -34,8 +34,8 @@ export class Register extends Component {
         })
     }
     render() {
-        return (
-            <View>
+        return ( // 로그인 폼
+            <View> 
                 <TextInput
                     placeholder="name"
                     onChangeText={(name) => this.setState({ name })}
@@ -49,7 +49,6 @@ export class Register extends Component {
                     secureTextEntry={true}
                     onChangeText={(password) => this.setState({ password })}
                 />
-
                 <Button
                     onPress={() => this.onSignUp()}
                     title="제출"
