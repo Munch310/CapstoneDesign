@@ -1,5 +1,5 @@
 import React from 'react';
-
+import AppShell from './components/AppShell';
 
 class App extends React.Component {
   constructor(props){
@@ -10,7 +10,7 @@ class App extends React.Component {
   }
   render(){
     return (
-        <h3>드디어 되네</h3>
+      <AppShell/>
     );
 
   }
