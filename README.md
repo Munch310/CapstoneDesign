@@ -7,3 +7,5 @@ firebase 연동 일단 시켜놓음
 redux 연결
 
 test임
+
+게시판이랑 연결 
