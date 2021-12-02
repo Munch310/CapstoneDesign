@@ -19,21 +19,21 @@ export class Main extends Component {
     render() {
         return (
             <Tab.Navigator>
-                <Tab.Screen name="Home" component={HomeScreen} 
+                <Tab.Screen name="Home" component={HomeScreen}  // tab 바 
                 options={{
                     tabBarIcon:({color, size}) => (
-                        <MaterialCommunityIcons name="home" color={color} size={26} />
+                        <MaterialCommunityIcons name="home" color={color} size={26} /> // 여기 아이콘
                     ),
                 
                 }}/>
                 <Tab.Screen name="Add" component={AddScreen} 
                 options={{
                     tabBarIcon:({color, size}) => (
-                        <MaterialCommunityIcons name="plus-blox" color={color} size={26} />
+                        <MaterialCommunityIcons name="plus-blox" color={color} size={26} /> // 아이콘 
                     ),
                 
                 }}/>
-                <Tab.Screen name="Home" component={ProfileScreen} 
+                <Tab.Screen name="profile" component={ProfileScreen} 
                 options={{
                     tabBarIcon:({color, size}) => (
                         <MaterialCommunityIcons name="account-circle" color={color} size={26} />
