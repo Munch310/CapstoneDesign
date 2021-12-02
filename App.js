@@ -30,6 +30,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import LandingScreen from "./Components/auth/Landing";
 import RegisterScreen from "./Components/auth/Register";
+import LoginScreen from "./Components/auth/Login";
 import MainScreen from './Components/Main'
 
 const Stack = createStackNavigator();
@@ -65,22 +66,24 @@ export class App extends Component {
         </View>
       )
     }
-    if(!loggedIn){ // 로드는 되었지만 로그인 되지 않았을때 화면 출력 #지금은 회원가입 버튼이랑 로그인 버튼만 있음#
+    if(!loggedIn){ // 로드는 되었지만 로그인 되지 않았을때 화면 출력
     return (
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Landing">
           <Stack.Screen name="Landing" component={LandingScreen} options={{headerShown: false}}/>
           <Stack.Screen name="Register" component={RegisterScreen}/>
-
+          <Stack.Screen name="Login" component={LoginScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     );
     }// 로드도 되고 로그인도 되서 들어가졌을때 화면
     return( 
       <Provider store={store}>
-        <MainScreen>
-          
-        </MainScreen>
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName="Main">
+            <Stack.Screen name="Main" component={MainScreen} options={{headerShown: false}}/>
+          </Stack.Navigator>
+        </NavigationContainer>
       </Provider>
       
     )
