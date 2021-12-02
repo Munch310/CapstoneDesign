@@ -12,7 +12,6 @@ import  DialogActions from "@material-ui/core/DialogActions";
 import  DialogContent from "@material-ui/core/DialogContent";
 import  DialogTitle from "@material-ui/core/DialogTitle";
 import  TextField from "@material-ui/core/TextField";
-import { RestoreTwoTone } from "@material-ui/icons";
 
 const styles = theme => ({
             fab: {
@@ -41,8 +40,12 @@ class Words extends React.Component{
             if(res.status != 200){
                 throw new Error(res.statusText);
             }
+            
             return res.json();
-        }).then(names => this.setState({names: names}));
+        }).then(names =>{
+            this.setState({names: names});
+            console.log("names : ",names);
+        });
     }
     _post(name) {
         return fetch(`${databaseURL}/names.json`,{
