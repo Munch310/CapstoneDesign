@@ -1,27 +1,46 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchUser } from '../redux/actions/index'
+
+import HomeScreen from './auth/main/Home'
+import AddScreen from './auth/main/Add'
+import ProfileScreen from './auth/main/Profile'
+
+const Tab = createBottomTabNavigator();
 
 export class Main extends Component {
     componentDidMount(){
          this.props.fetchUser();
     }
     render() {
-        const { currentUser } = this.props;
-
-        console.log(currentUser)
-        if(currentUser == undefined){
-            return(
-                <View></View>
-            )
-        }
         return (
-            <View style={{ flex: 1, justifyContent: 'center'}}>
-                <Text>{ currentUser.name } 로그인 되어있습니다.</Text>
-            </View>
+            <Tab.Navigator>
+                <Tab.Screen name="Home" component={HomeScreen} 
+                options={{
+                    tabBarIcon:({color, size}) => (
+                        <MaterialCommunityIcons name="home" color={color} size={26} />
+                    ),
+                
+                }}/>
+                <Tab.Screen name="Add" component={AddScreen} 
+                options={{
+                    tabBarIcon:({color, size}) => (
+                        <MaterialCommunityIcons name="plus-blox" color={color} size={26} />
+                    ),
+                
+                }}/>
+                <Tab.Screen name="Home" component={ProfileScreen} 
+                options={{
+                    tabBarIcon:({color, size}) => (
+                        <MaterialCommunityIcons name="account-circle" color={color} size={26} />
+                    ),
+                
+                }}/>
+            </Tab.Navigator>
         )
     }
 }
@@ -29,6 +48,6 @@ export class Main extends Component {
 const mapStateToProps = (store) => ({
     currentUser: store.userState.currentUser
 })
-const mapDispatchProps = (dispatch) => bindActionCreators({fetchUser}, dispatch) 
+const mapDispatchProps = (dispatch) => bindActionCreators({fetchUser}, dispatch);
  
 export default connect (mapStateToProps, mapDispatchProps)(Main); // redux 데이터 연결 지금은 email이랑 name 관리
